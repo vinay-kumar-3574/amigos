@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Header } from './components/ui/header-1.jsx'
-import ContactAddress from './components/ContactAddress.jsx'
 import Footer from './components/Footer.jsx'
 import ProductsGrid from './components/ProductsGrid.jsx'
 import FeaturesPreview from './components/FeaturesPreview.jsx'
@@ -74,8 +73,7 @@ function App() {
           <Route path="/buy2" element={<DetailPage slug="buy2" detailPages={detailPages} productCards={productCards} />} />
           <Route path="/buy3" element={<DetailPage slug="buy3" detailPages={detailPages} productCards={productCards} />} />
         </Routes>
-        <ContactAddress contactBlock={contactBlock} />
-        <Footer />
+        <Footer navLinks={navLinks} contactBlock={contactBlock} />
       </main>
 
       <Modal isOpen={isLoginOpen} title="Welcome Back" onClose={() => setIsLoginOpen(false)}>

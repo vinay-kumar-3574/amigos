@@ -86,22 +86,22 @@ export const servicesList = [
 export const featureCards = [
   {
     title: 'Automatic Fire Suppression System',
-    text: 'The Automatic Fire Suppression System for HCNG Vehicles ensures safety by detecting and automatically extinguishing fires caused by the high flammability of hydrogen-compressed natural gas and short circuit. It instantly activates an extinguishing agent when a fire is detected, particularly around heat-sensitive or electrical areas, preventing the fire from escalating.',
+    text: 'An Automatic Fire Suppression System in HCNG vehicles instantly detects and suppresses fires from HCNG leaks or electrical faults to prevent escalation.',
     bg: '#3E3A3B',
   },
   {
     title: 'Automatic Current Circuit Failure Detection System',
-    text: 'The Automatic Current Circuit Failure Detection System improves vehicle safety by detecting electrical faults in real-time. It uses Hall-effect sensors and an Arduino microcontroller to monitor current flow and alert the driver of any wiring issues. The system displays the fault location on an LCD, enabling quicker diagnostics and safer driving.',
+    text: 'Continuously monitors current flow using sensors and alerts the driver with fault location details for quick and safe diagnosis.',
     bg: '#444',
   },
   {
     title: 'Automatic Gas Leakage Detection and Cut-off System',
-    text: 'An Automatic Gas Leakage Detection and cut-off System is a safety mechanism designed to detect gas leaks in real time and alert the driver immediately and cut-off the gas by regulating the valve. This system helps prevent accidents by ensuring the safety of  the passengers, driver and  vehicle.',
+    text: 'Detects gas leaks in real time, alerts the driver, and automatically shuts off the valve to prevent accidents.',
     bg: '#555',
   },
   {
     title: 'Emergency Vehicle Shutdown System with Driver Health Trigger:',
-    text: 'The Emergency Vehicle Shutdown System monitors driver health in real-time using heart rate and fatigue sensors. It detects issues like irregularities or fatigue through behavior tracking and alerts the driver. If necessary, the system automatically slows the vehicle and initiates an emergency stop.',
+    text: 'Monitors driver health and fatigue in real time, alerts the driver, and safely slows or stops the vehicle in emergencies.',
     bg: '#555',
   },
 ]

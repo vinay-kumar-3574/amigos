@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import ProductsGrid from '../ProductsGrid.jsx'
-import FeaturesPreview from '../FeaturesPreview.jsx'
+import { FeaturesSectionWithHoverEffects } from '../ui/feature-section-with-hover-effects.jsx'
 import ContactForm from '../ContactForm.jsx'
+import { featureCards, comfortCards } from '../../data.js'
 
 const HomePage = ({ products }) => {
   useEffect(() => {
@@ -10,6 +11,12 @@ const HomePage = ({ products }) => {
       heroVideo.playbackRate = 1.5
     }
   }, [])
+
+  // Combine featureCards and comfortCards for the features section
+  const allFeatures = [
+    ...featureCards.map((f) => ({ title: f.title, text: f.text })),
+    ...comfortCards.map((c) => ({ title: c.title, text: c.text })),
+  ]
 
   return (
     <>
@@ -28,7 +35,7 @@ const HomePage = ({ products }) => {
       </section>
 
       <ProductsGrid products={products} />
-      <FeaturesPreview />
+      <FeaturesSectionWithHoverEffects features={allFeatures} />
       <ContactForm />
     </>
   )

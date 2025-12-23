@@ -14,6 +14,10 @@
   --color-border: oklch(89.8% 0 0);
   --color-input: oklch(89.8% 0 0);
   --color-ring: oklch(65% 0.2 280);
+  --color-muted: oklch(96% 0 0);
+  --color-muted-foreground: oklch(45% 0 0);
+  --color-popover: oklch(100% 0 0);
+  --color-popover-foreground: oklch(9.8% 0 0);
   --radius: 0.5rem;
 }
 
