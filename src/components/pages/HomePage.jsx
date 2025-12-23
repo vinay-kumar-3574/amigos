@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import ProductsGrid from '../ProductsGrid.jsx'
 import { FeaturesSectionWithHoverEffects } from '../ui/feature-section-with-hover-effects.jsx'
 import ContactForm from '../ContactForm.jsx'
-import { featureCards, comfortCards } from '../../data.js'
+import { featureCards, comfortCards, contactBlock } from '../../data.js'
 
 const HomePage = ({ products }) => {
   useEffect(() => {
@@ -36,7 +36,7 @@ const HomePage = ({ products }) => {
 
       <ProductsGrid products={products} />
       <FeaturesSectionWithHoverEffects features={allFeatures} />
-      <ContactForm />
+      <ContactForm contactBlock={contactBlock} />
     </>
   )
 }
