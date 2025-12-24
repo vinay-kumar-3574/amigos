@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { saveChatMessage } from '../firebase.js'
 
-const API_KEY = 'AIzaSyALkcr0Tbh6zZS3mAi1kDiv9kyKJ-aDVp0'
+const API_KEY = 'AIzaSyCGQvAr5mVGcG8_3Nk4KeEw72monhmu2Go'
 const MODEL = 'gemini-2.5-flash'
 const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`
 

@@ -62,12 +62,12 @@ export function FeaturesSectionWithHoverEffects({ features = [] }) {
   }
 
   return (
-    <section className="w-full py-16 bg-gradient-to-b from-gray-50 to-white">
+    <section className="w-full py-12 sm:py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4 text-neutral-800">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 text-neutral-800">
           Features
         </h2>
-        <p className="text-center text-neutral-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-neutral-600 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
           Discover the advanced features and safety systems that make our vehicles stand out
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 bg-white rounded-lg shadow-sm">

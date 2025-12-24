@@ -34,17 +34,17 @@ const ServicesPage = ({ servicesList }) => {
   }
 
   return (
-    <section className="w-full py-16 bg-gradient-to-b from-gray-50 to-white">
+    <section className="w-full py-12 sm:py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4 text-neutral-800">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 text-neutral-800">
           Our Services
         </h2>
-        <p className="text-center text-neutral-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-neutral-600 mb-8 sm:mb-12 max-w-2xl mx-auto px-4">
           We offer a range of high-quality services to meet your needs. Explore what we can do for you below:
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 relative z-10 bg-white rounded-lg shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 relative z-10 bg-white rounded-lg shadow-sm border border-neutral-200">
           {displayServices.map((service, index) => (
-            <Service key={service.title || `service-${index}`} {...service} index={index} />
+            <Service key={service.title || `service-${index}`} {...service} index={index} totalItems={displayServices.length} />
           ))}
         </div>
         <div className="text-center mt-12">
@@ -60,23 +60,26 @@ const ServicesPage = ({ servicesList }) => {
   )
 }
 
-const Service = ({ title, text, index }) => {
+const Service = ({ title, text, index, totalItems }) => {
   if (!title) return null
   
   const IconComponent = getIcon(title)
+  const isLastRow = index >= Math.floor(totalItems / 3) * 3
+  const isLastInRow = (index + 1) % 3 === 0
+  const isFirstInRow = index % 3 === 0
 
   return (
     <div
       className={cn(
-        'flex flex-col lg:border-r py-10 relative group/service border-neutral-200',
-        (index === 0 || index === 4) && 'lg:border-l border-neutral-200',
-        index < 4 && 'lg:border-b border-neutral-200'
+        'flex flex-col py-10 relative group/service',
+        !isLastInRow && 'border-r border-neutral-200',
+        !isLastRow && 'border-b border-neutral-200'
       )}
     >
-      {index < 4 && (
+      {!isLastRow && (
         <div className="opacity-0 group-hover/service:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-t from-neutral-100 to-transparent pointer-events-none" />
       )}
-      {index >= 4 && (
+      {isLastRow && (
         <div className="opacity-0 group-hover/service:opacity-100 transition duration-200 absolute inset-0 h-full w-full bg-gradient-to-b from-neutral-100 to-transparent pointer-events-none" />
       )}
       <div className="mb-4 relative z-10 px-10 text-neutral-600">

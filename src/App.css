@@ -710,7 +710,7 @@ video {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -719,71 +719,123 @@ video {
 
 .modal-card {
   position: relative;
-  background: linear-gradient(135deg, #f3e8ff, #ffffff);
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 420px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: calc(100% - 32px);
+  max-width: 440px;
   padding: 24px;
+  margin: 16px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+@media (min-width: 640px) {
+  .modal-card {
+    padding: 32px;
+    margin: 0;
+    width: 100%;
+  }
 }
 
 .modal-title {
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  color: #6b21a8;
-  margin-bottom: 16px;
+  color: #1f2937;
+  margin-bottom: 24px;
 }
 
 .modal-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 16px;
+  right: 16px;
   background: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
-  color: #555;
+  color: #6b7280;
+  line-height: 1;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #1f2937;
 }
 
 .form-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .form-stack input,
 .form-stack select {
   width: 100%;
-  padding: 12px;
+  padding: 12px 16px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
+  font-size: 14px;
+  color: #1f2937;
+  background: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-stack input:focus,
+.form-stack select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-stack input::placeholder {
+  color: #9ca3af;
+}
+
+.form-stack select {
+  cursor: pointer;
 }
 
 .modal-action {
   width: 100%;
-  padding: 12px;
+  padding: 12px 24px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 15px;
   color: white;
+  transition: all 0.2s;
 }
 
 .modal-action.w-full {
   width: 100%;
 }
 
+.modal-action.primary-btn {
+  background: #000000;
+}
+
+.modal-action.primary-btn:hover {
+  background: #1f2937;
+}
+
 .success-btn {
-  background: #16a34a;
+  background: #000000;
+}
+
+.success-btn:hover {
+  background: #1f2937;
 }
 
 .divider {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   color: #6b7280;
-  font-size: 12px;
+  font-size: 13px;
+  margin: 8px 0;
 }
 
 .divider hr {
@@ -796,20 +848,43 @@ video {
   text-align: center;
   font-size: 14px;
   color: #4b5563;
+  margin-top: 8px;
 }
 
 .modal-footnote .link {
-  color: #6b21a8;
+  color: #1f2937;
   cursor: pointer;
   text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.modal-footnote .link:hover {
+  color: #3b82f6;
 }
 
 .google-wrapper {
-  border: 1px solid black;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
-  padding: 6px;
+  padding: 12px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.google-wrapper:hover {
+  border-color: #9ca3af;
+  background: #f9fafb;
+}
+
+.google-wrapper #googleLoginBtn,
+.google-wrapper #googleRegisterBtn {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f2937;
 }
 
 .alert-backdrop {
@@ -956,6 +1031,10 @@ video {
   .hero-text {
     font-size: 1.5rem;
   }
+  .hero {
+    height: 70vh;
+    min-height: 500px;
+  }
   .product {
     flex: 1 1 calc(50% - 20px);
   }
@@ -977,17 +1056,31 @@ video {
     font-size: 0.9rem;
   }
   .services-container {
-    padding: 50px;
+    padding: 20px;
   }
   .service-item {
     flex: 1 1 calc(100% - 10px);
   }
   .about-container {
     flex-direction: column;
+    padding: 20px;
   }
   .info-section,
   .specifications-section {
     flex: 1 1 100%;
+    padding: 16px;
+  }
+  .chatbot-window {
+    width: calc(100% - 32px);
+    right: 16px;
+    bottom: 90px;
+    max-height: calc(100vh - 120px);
+  }
+  .chatbot-toggle {
+    bottom: 16px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
   }
 }
 
@@ -1006,5 +1099,19 @@ video {
   }
   .comfort-section-wrapper {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .hero {
+    height: 60vh;
+    min-height: 400px;
+  }
+  .modal-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .form-stack {
+    gap: 12px;
+  }
+  .modal-card {
+    padding: 20px;
   }
 }

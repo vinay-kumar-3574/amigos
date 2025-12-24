@@ -22,7 +22,7 @@ const HomePage = ({ products }) => {
   return (
     <>
       <section id="home" className="hero">
-        <ImagesSlider className="h-screen w-full" images={heroImages}>
+        <ImagesSlider className="h-[60vh] sm:h-[70vh] md:h-screen w-full" images={heroImages}>
           <motion.div
             initial={{
               opacity: 0,
@@ -35,10 +35,10 @@ const HomePage = ({ products }) => {
             transition={{
               duration: 0.6,
             }}
-            className="z-50 flex flex-col justify-center items-center relative"
+            className="z-50 flex flex-col justify-center items-center relative px-4"
           >
             <motion.h1
-              className="font-bold text-xl md:text-6xl text-center text-white py-4 drop-shadow-2xl"
+              className="font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center text-white py-4 drop-shadow-2xl"
             >
               Welcome to Amigos Pvt Ltd
             </motion.h1>

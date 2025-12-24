@@ -4,13 +4,13 @@ import { motion } from 'framer-motion'
 const AboutPage = ({ megaNewsCards }) => (
   <>
     {/* Hero Section */}
-    <section className="w-full bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white py-20 px-4">
+    <section className="w-full bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white py-12 sm:py-16 md:py-20 px-4">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-neutral-300 bg-clip-text text-transparent"
         >
           About Our Company
         </motion.h1>
@@ -18,7 +18,7 @@ const AboutPage = ({ megaNewsCards }) => (
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-6 text-lg md:text-xl text-neutral-200 leading-relaxed"
+          className="space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl text-neutral-200 leading-relaxed"
         >
           <p>
             Welcome to our business! By offering excellent features and services in our hCNG vehicles, our company is setting
@@ -45,7 +45,7 @@ const AboutPage = ({ megaNewsCards }) => (
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-4 text-neutral-800"
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 text-neutral-800"
         >
           Why Choose Us
         </motion.h2>
@@ -53,7 +53,7 @@ const AboutPage = ({ megaNewsCards }) => (
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-center text-neutral-600 mb-12 max-w-2xl mx-auto"
+          className="text-center text-neutral-600 mb-8 sm:mb-12 max-w-2xl mx-auto px-4"
         >
           Discover what makes us the leader in eco-friendly transportation
         </motion.p>

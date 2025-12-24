@@ -3,13 +3,13 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
 const ProductsGrid = ({ products, showBack }) => (
-  <section id="products" className="w-full py-16 bg-gradient-to-b from-gray-50 to-white">
+  <section id="products" className="w-full py-12 sm:py-16 bg-gradient-to-b from-gray-50 to-white">
     <div className="max-w-7xl mx-auto px-4">
       <motion.h2
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-center mb-4 text-neutral-800"
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 text-neutral-800"
       >
         Our Products
       </motion.h2>
@@ -17,12 +17,12 @@ const ProductsGrid = ({ products, showBack }) => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-center text-neutral-600 mb-12 max-w-2xl mx-auto text-lg"
+        className="text-center text-neutral-600 mb-8 sm:mb-12 max-w-2xl mx-auto text-base sm:text-lg px-4"
       >
         Explore our premium collection of hCNG vehicles designed for performance, safety, and sustainability
       </motion.p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
         {products.map((product, index) => (
           <motion.div
             key={product.title}
@@ -42,8 +42,8 @@ const ProductsGrid = ({ products, showBack }) => (
             </div>
             
             {/* Product Info */}
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-4 text-neutral-800 group-hover:text-blue-600 transition-colors">
+            <div className="p-4 sm:p-6">
+              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-neutral-800 group-hover:text-blue-600 transition-colors">
                 {product.title}
               </h3>
               <Link

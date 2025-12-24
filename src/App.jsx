@@ -90,7 +90,7 @@ function App() {
           </div>
           <div className="google-wrapper">
             <div id="googleLoginBtn">Google Sign In</div>
-      </div>
+          </div>
           <p className="modal-footnote">
             Don’t have an account?{' '}
             <span className="link" onClick={() => (setIsLoginOpen(false), setIsRegisterOpen(true))}>
@@ -113,7 +113,7 @@ function App() {
           <input id="regPassword" type="password" placeholder="Password" required />
           <button type="submit" className="modal-action success-btn w-full">
             Register
-        </button>
+          </button>
           <div className="divider">
             <hr />
             <span>OR</span>
