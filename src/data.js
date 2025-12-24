@@ -2,7 +2,6 @@ export const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Products', to: '/products' },
-  { label: 'Features', to: '/features' },
   { label: 'Services', to: '/services' },
   { label: 'Video Gallery', to: '/video-gallery' },
 ]
