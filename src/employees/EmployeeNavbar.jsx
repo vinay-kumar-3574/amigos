@@ -1,15 +1,24 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon'
 import { useScroll } from '@/components/ui/use-scroll'
 import { createPortal } from 'react-dom'
+import { User } from 'lucide-react'
 
-export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLogin }) {
+export function EmployeeNavbar({ userEmail, onLogout }) {
   const [open, setOpen] = React.useState(false)
   const scrolled = useScroll(10)
   const location = useLocation()
+  const navigate = useNavigate()
+
+  const employeeNavLinks = [
+    { to: '/employees', label: 'Dashboard' },
+    { to: '/employees/profile', label: 'Profile' },
+    { to: '/employees/reports', label: 'Reports' },
+    { to: '/employees/analytics', label: 'Analytics' },
+  ]
 
   React.useEffect(() => {
     if (open) {
@@ -22,6 +31,13 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
     }
   }, [open])
 
+  const handleLogout = () => {
+    if (onLogout) {
+      onLogout()
+    }
+    navigate('/')
+  }
+
   return (
     <header
       className={cn('sticky top-0 z-50 w-full border-b border-transparent', {
@@ -31,7 +47,7 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
       })}
     >
       <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4">
-        <Link to="/" className="hover:bg-white/10 rounded-md p-2 transition-colors">
+        <Link to="/employees" className="hover:bg-white/10 rounded-md p-2 transition-colors">
           <img
             src="https://cdn.glitch.global/2a1e26d9-ab9f-4d0d-922f-a475d812e321/image-removebg-preview%20(2).png?1734947722146"
             alt="Amigos Logo"
@@ -39,7 +55,7 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
           />
         </Link>
         <div className="hidden items-center gap-2 md:flex">
-          {navLinks.map((link) => (
+          {employeeNavLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
@@ -52,17 +68,17 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
               {link.label}
             </Link>
           ))}
-          <Link to="#contact" className={cn(buttonVariants({ variant: 'ghost' }), 'text-white hover:bg-white/10')}>
-            Contact
+          <Link to="/" className={cn(buttonVariants({ variant: 'ghost' }), 'text-white hover:bg-white/10')}>
+            Home
           </Link>
-          <Button variant="outline" onClick={onOpenLogin} className="border-white/20 text-white hover:bg-white/10">
-            Sign In
-          </Button>
-          <Button variant="outline" onClick={onOpenEmployeeLogin} className="border-white/20 text-white hover:bg-white/10">
-            Sign In as Employee
-          </Button>
-          <Button onClick={onOpenRegister} className="bg-white text-black hover:bg-white/90">
-            Register
+          {userEmail && (
+            <div className="flex items-center gap-2 px-3 py-2 text-white">
+              <User className="w-4 h-4" />
+              <span className="text-sm">{userEmail}</span>
+            </div>
+          )}
+          <Button variant="outline" onClick={handleLogout} className="border-white/20 text-white hover:bg-white/10">
+            Logout
           </Button>
         </div>
         <Button
@@ -79,7 +95,7 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
       </nav>
       <MobileMenu open={open} className="flex flex-col justify-between gap-2">
         <div className="grid gap-y-2">
-          {navLinks.map((link) => (
+          {employeeNavLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
@@ -96,45 +112,29 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
             </Link>
           ))}
           <Link
-            to="#contact"
+            to="/"
             onClick={() => setOpen(false)}
             className={buttonVariants({
               variant: 'ghost',
               className: 'justify-start text-white hover:bg-white/10',
             })}
           >
-            Contact
+            Home
           </Link>
         </div>
         <div className="flex flex-col gap-2">
+          {userEmail && (
+            <div className="flex items-center gap-2 px-3 py-2 text-white">
+              <User className="w-4 h-4" />
+              <span className="text-sm">{userEmail}</span>
+            </div>
+          )}
           <Button
             variant="outline"
             className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
-            onClick={() => {
-              setOpen(false)
-              onOpenLogin()
-            }}
+            onClick={handleLogout}
           >
-            Sign In
-          </Button>
-          <Button
-            variant="outline"
-            className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
-            onClick={() => {
-              setOpen(false)
-              onOpenEmployeeLogin()
-            }}
-          >
-            Sign In as Employee
-          </Button>
-          <Button
-            className="w-full bg-white text-black hover:bg-white/90"
-            onClick={() => {
-              setOpen(false)
-              onOpenRegister()
-            }}
-          >
-            Register
+            Logout
           </Button>
         </div>
       </MobileMenu>
