@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import { Header } from './components/ui/header-1.jsx'
@@ -42,9 +42,22 @@ function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false)
   const [isRegisterOpen, setIsRegisterOpen] = useState(false)
   const [isEmployeeLoginOpen, setIsEmployeeLoginOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return !!localStorage.getItem('userEmail')
+  })
   const [alertMessage, setAlertMessage] = useState('')
-  const [userEmail, setUserEmail] = useState('')
+  const [userEmail, setUserEmail] = useState(() => {
+    return localStorage.getItem('userEmail') || ''
+  })
+
+  // Restore login state from localStorage on mount
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('userEmail')
+    if (savedEmail) {
+      setUserEmail(savedEmail)
+      setIsLoggedIn(true)
+    }
+  }, [])
 
   const showAlert = (msg) => setAlertMessage(msg)
   const closeAlert = () => setAlertMessage('')
@@ -140,11 +153,40 @@ function App() {
     localStorage.removeItem('userRole')
     localStorage.removeItem('joinDate')
     localStorage.removeItem('profilePic')
+    showAlert('Logged out successfully!')
+    navigate('/')
   }
+
+  // Get userName from localStorage or extract from email
+  const getUserName = () => {
+    const savedName = localStorage.getItem('userName')
+    if (savedName) return savedName
+    if (userEmail) {
+      return userEmail.split('@')[0]
+        .replace(/[._]/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ')
+    }
+    return ''
+  }
+
+  const userName = getUserName()
 
   return (
     <div className="app-shell">
-      {!isEmployeeRoute && <Header navLinks={navLinks} onOpenLogin={() => setIsLoginOpen(true)} onOpenRegister={() => setIsRegisterOpen(true)} onOpenEmployeeLogin={() => setIsEmployeeLoginOpen(true)} />}
+      {!isEmployeeRoute && (
+        <Header 
+          navLinks={navLinks} 
+          onOpenLogin={() => setIsLoginOpen(true)} 
+          onOpenRegister={() => setIsRegisterOpen(true)} 
+          onOpenEmployeeLogin={() => setIsEmployeeLoginOpen(true)}
+          isLoggedIn={isLoggedIn}
+          userEmail={userEmail}
+          userName={userName}
+          onLogout={handleLogout}
+        />
+      )}
 
       <main>
         <Routes>

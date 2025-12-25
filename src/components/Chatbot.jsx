@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { saveChatMessage } from '../firebase.js'
 
-const API_KEY = 'AIzaSyCT-tMjqd4Yxyetnoyw0KEabD1Fs94gmhE'
-const MODEL = 'gemini-2.5-flash'
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY
+const MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-2.5-flash'
 const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`
+
+// Validate API key is present
+if (!API_KEY) {
+  console.error('VITE_GEMINI_API_KEY is not set in environment variables. Please check your .env file.')
+}
 
 const SYSTEM_CONTEXT =
   'You are an official customer support chatbot for Amigos Pvt. Ltd., an off-road vehicle manufacturing company. ' +

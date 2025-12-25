@@ -5,8 +5,9 @@ import { cn } from '@/lib/utils'
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon'
 import { useScroll } from '@/components/ui/use-scroll'
 import { createPortal } from 'react-dom'
+import { User, LogOut } from 'lucide-react'
 
-export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLogin }) {
+export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLogin, isLoggedIn, userEmail, userName, onLogout }) {
   const [open, setOpen] = React.useState(false)
   const scrolled = useScroll(10)
   const location = useLocation()
@@ -55,15 +56,35 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
           <Link to="#contact" className={cn(buttonVariants({ variant: 'ghost' }), 'text-white hover:bg-white/10')}>
             Contact
           </Link>
-          <Button variant="outline" onClick={onOpenLogin} className="border-white/20 text-white hover:bg-white/10">
-            Sign In
-          </Button>
-          <Button variant="outline" onClick={onOpenEmployeeLogin} className="border-white/20 text-white hover:bg-white/10">
-            Sign In as Employee
-          </Button>
-          <Button onClick={onOpenRegister} className="bg-white text-black hover:bg-white/90">
-            Register
-          </Button>
+          {isLoggedIn ? (
+            <>
+              <div className="flex items-center gap-2 px-3 py-2 text-white">
+                <User className="w-4 h-4" />
+                <span className="text-sm">{userName || userEmail?.split('@')[0]}</span>
+              </div>
+              {userEmail?.endsWith('@vishnu.edu.in') && (
+                <Link to="/employees/profile" className={cn(buttonVariants({ variant: 'ghost' }), 'text-white hover:bg-white/10')}>
+                  Profile
+                </Link>
+              )}
+              <Button variant="outline" onClick={onLogout} className="border-white/20 text-white hover:bg-white/10">
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="outline" onClick={onOpenLogin} className="border-white/20 text-white hover:bg-white/10">
+                Sign In
+              </Button>
+              <Button variant="outline" onClick={onOpenEmployeeLogin} className="border-white/20 text-white hover:bg-white/10">
+                Sign In as Employee
+              </Button>
+              <Button onClick={onOpenRegister} className="bg-white text-black hover:bg-white/90">
+                Register
+              </Button>
+            </>
+          )}
         </div>
         <Button
           size="icon"
@@ -107,35 +128,69 @@ export function Header({ navLinks, onOpenLogin, onOpenRegister, onOpenEmployeeLo
           </Link>
         </div>
         <div className="flex flex-col gap-2">
-          <Button
-            variant="outline"
-            className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
-            onClick={() => {
-              setOpen(false)
-              onOpenLogin()
-            }}
-          >
-            Sign In
-          </Button>
-          <Button
-            variant="outline"
-            className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
-            onClick={() => {
-              setOpen(false)
-              onOpenEmployeeLogin()
-            }}
-          >
-            Sign In as Employee
-          </Button>
-          <Button
-            className="w-full bg-white text-black hover:bg-white/90"
-            onClick={() => {
-              setOpen(false)
-              onOpenRegister()
-            }}
-          >
-            Register
-          </Button>
+          {isLoggedIn ? (
+            <>
+              <div className="flex items-center gap-2 px-3 py-2 text-white mb-2">
+                <User className="w-4 h-4" />
+                <span className="text-sm">{userName || userEmail?.split('@')[0]}</span>
+              </div>
+              {userEmail?.endsWith('@vishnu.edu.in') && (
+                <Link
+                  to="/employees/profile"
+                  onClick={() => setOpen(false)}
+                  className={buttonVariants({
+                    variant: 'ghost',
+                    className: 'justify-start text-white hover:bg-white/10',
+                  })}
+                >
+                  Profile
+                </Link>
+              )}
+              <Button
+                variant="outline"
+                className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
+                onClick={() => {
+                  setOpen(false)
+                  onLogout()
+                }}
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                variant="outline"
+                className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
+                onClick={() => {
+                  setOpen(false)
+                  onOpenLogin()
+                }}
+              >
+                Sign In
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full bg-transparent border-white/20 text-white hover:bg-white/10"
+                onClick={() => {
+                  setOpen(false)
+                  onOpenEmployeeLogin()
+                }}
+              >
+                Sign In as Employee
+              </Button>
+              <Button
+                className="w-full bg-white text-black hover:bg-white/90"
+                onClick={() => {
+                  setOpen(false)
+                  onOpenRegister()
+                }}
+              >
+                Register
+              </Button>
+            </>
+          )}
         </div>
       </MobileMenu>
     </header>
