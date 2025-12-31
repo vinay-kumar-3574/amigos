@@ -7,12 +7,12 @@ export default function ContactSection({ contactBlock }) {
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: contactBlock?.addressLines || ['Amigos Pvt. Ltd.', 'Gandhi Nagar.', 'Gujarat, India, 382010'],
+      details: contactBlock?.addressLines || ['Amigos Pvt. Ltd.', 'sanand', 'Gujarat, India, 382010'],
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: [contactBlock?.phone || '9100274829'],
+      details: [contactBlock?.phone || '+91 81067 01440'],
     },
     {
       icon: Mail,

@@ -59,9 +59,9 @@ export const megaNewsCards = [
 
 export const contactBlock = {
   email: 'Amigos.pvt.ltd.2025@gmail.com',
-  phone: '9100274829',
+  phone: '+91 81067 01440',
   hours: 'Mon-Fri 9:00 AM - 6 :00 PM',
-  addressLines: ['Amigos Pvt. Ltd.', 'Gandhi Nagar.', 'Gujarat, India, 382010'],
+  addressLines: ['Amigos Pvt. Ltd.', 'sanand', 'Gujarat, India, 382010'],
 }
 
 export const servicesList = [

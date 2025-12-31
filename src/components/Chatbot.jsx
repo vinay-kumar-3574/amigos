@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { saveChatMessage } from '../firebase.js'
 
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY2
 const MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-2.5-flash'
 const ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`
 
@@ -17,7 +17,7 @@ const SYSTEM_CONTEXT =
   'Thunder 400 is a lightweight, high-torque off-road buggy, while Titan 600 is designed for extreme terrain with powerful suspension. ' +
   'Pricing varies based on customization, so users asking about price or cost should be advised to contact the company directly. ' +
   'All vehicles use high-performance engines suitable for off-road use. Amigos Pvt. Ltd. provides complete service and spare support. ' +
-  'For contact inquiries, share the official email (Amigos.pvt.ltd.2025@gmail.com) and phone number (9100274829). ' +
+  'For contact inquiries, share the official email (Amigos.pvt.ltd.2025@gmail.com) and phone number (+91 81067 01440). ' +
   'Greet users politely when they say hello or hi. If a query is outside this scope, respond politely and guide the user ' +
   'to ask about models, pricing, or support. Do not invent information or make assumptions beyond the provided details.'
 
